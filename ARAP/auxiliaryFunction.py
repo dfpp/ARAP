@@ -69,11 +69,9 @@ sumsub_variables = {
 }
 '''
 def get_filename_without_extension(file_path):
-    """
-    输入文件路径，返回文件名（不带后缀）
-    """
-    file_name_with_extension = os.path.basename(file_path)  # 获取文件名（带后缀）
-    file_name_without_extension = os.path.splitext(file_name_with_extension)[0]  # 分离文件名和扩展名，返回不带扩展名的文件名
+   
+    file_name_with_extension = os.path.basename(file_path)  
+    file_name_without_extension = os.path.splitext(file_name_with_extension)[0]  
     return file_name_without_extension
 
 
@@ -120,32 +118,32 @@ def calculate_sha256(file_path):
 def handle_remove_readonly(func, path, exc):
     excvalue = exc[1]
     if func in (os.rmdir, os.remove) and excvalue.errno == errno.EACCES:
-        os.chmod(path, stat.S_IRWXU| stat.S_IRWXG| stat.S_IRWXO) #添加读写权限
+        os.chmod(path, stat.S_IRWXU| stat.S_IRWXG| stat.S_IRWXO) 
         func(path)
     else:
         raise
 
 
 def extract_dex_files(apk_file_path):
-    # 获取APK文件所在的目录路径和Dex目录的路径
+   
     apk_dir_path = os.path.dirname(apk_file_path)
     dex_dir_path = os.path.join(apk_dir_path, 'dex')
     
-    # 创建Dex目录
+    
     os.makedirs(dex_dir_path, exist_ok=True)
     
-    # 提取所有.dex文件到Dex目录下
+    
     with zipfile.ZipFile(apk_file_path, 'r') as zip_ref:
         for item in zip_ref.infolist():
             if item.filename.endswith('.dex'):
-                # 获取.dex文件的文件名并组合成Dex文件的完整路径
+                
                 dex_file_path = os.path.join(dex_dir_path, os.path.basename(item.filename))
-                # 从APK文件中读取.dex文件的内容并将其写入Dex文件中
+                
                 with open(dex_file_path, 'wb') as dex_file:
                     dex_file.write(zip_ref.read(item.filename))
                     
 
-#找到所有smali文件的位置
+
 def traverse_folder_smali(folder, smaliList):
     for root, dirs, files in os.walk(folder):
         for file in files:
@@ -154,14 +152,8 @@ def traverse_folder_smali(folder, smaliList):
 
 
 def generate_smali_files(apk_file_path, baksmali_jar_path, list_need_removed):
-    """
-    生成smali文件
+   
     
-    :param apk_file_path: APK文件的路径
-    :param baksmali_jar_path: baksmali工具的路径
-    :param list_need_removed: 需要删除的目录列表
-    """
-    # 解压APK文件，将其中的.dex文件提取出来
     dex_dir_path = os.path.join(os.path.dirname(apk_file_path), 'dex')
     if not os.path.exists(dex_dir_path):
         os.makedirs(dex_dir_path)
@@ -173,12 +165,12 @@ def generate_smali_files(apk_file_path, baksmali_jar_path, list_need_removed):
                 with open(dex_file_path, 'wb') as dex_file:
                     dex_file.write(content)
 
-    # 如果smali目录不存在，则创建它
+    
     smali_dir_path = os.path.join(os.path.dirname(apk_file_path), 'smali')
     if not os.path.exists(smali_dir_path):
         os.makedirs(smali_dir_path)
 
-    # 遍历dex目录下的所有.dex文件，并将其转换为.smali文件
+    
     for dex_file in os.listdir(dex_dir_path):
         if dex_file.endswith('.dex'):
             dex_path = os.path.join(dex_dir_path, dex_file)
@@ -199,7 +191,7 @@ def generate_smali_files(apk_file_path, baksmali_jar_path, list_need_removed):
 
             p.kill()
 
-    # 遍历目录，查找需要删除的目录
+    
     for root, dirs, files in os.walk(smali_dir_path):
         for item in list_need_removed:
             dir_path = os.path.join(root, item.replace("/", os.sep))
@@ -223,43 +215,43 @@ def execute_d8(apk_file_path):
 
 
 def generate_finalDex(apkfilepath):
-    # 获取apk文件所在的目录路径
+    
     apk_dir = os.path.dirname(apkfilepath)
     
-    # 生成finalDex目录路径
+   
     final_dex_dir = os.path.join(apk_dir, "finalDex")
     
-    # 创建finalDex目录（如果不存在）
+    
     os.makedirs(final_dex_dir, exist_ok=True)
     
-    # 返回finalDex目录路径
+    
     return final_dex_dir
 
 
 def generate_dex(apkfilepath):
-    # 获取apk文件所在的目录路径
+    
     apk_dir = os.path.dirname(apkfilepath)
     
-    # 生成finalDex目录路径
+    
     final_dex_dir = os.path.join(apk_dir, "dex")
     
-    # 创建finalDex目录（如果不存在）
+    
     os.makedirs(final_dex_dir, exist_ok=True)
     
-    # 返回finalDex目录路径
+    
     return final_dex_dir
 
 def generate_outDex(apkfilepath):
-    # 获取apk文件所在的目录路径
+    
     apk_dir = os.path.dirname(apkfilepath)
     
-    # 生成finalDex目录路径
+    
     out_dex_dir = os.path.join(apk_dir, "outDex")
     
-    # 创建finalDex目录（如果不存在）
+    
     os.makedirs(out_dex_dir, exist_ok=True)
     
-    # 返回finalDex目录路径
+    
     return out_dex_dir
 
 def check_file_size(filepath):
@@ -275,19 +267,19 @@ def delete_other_files(apk_path):
     
     for file_name in os.listdir(apk_dir):
         file_path = os.path.join(apk_dir, file_name)
-        if file_name != apk_name:  # 不删除apk文件
+        if file_name != apk_name:  
             if os.path.isfile(file_path):
-                os.remove(file_path)  # 删除文件
+                os.remove(file_path)  
             elif os.path.isdir(file_path):
-                shutil.rmtree(file_path)  # 删除文件夹及其子目录和文件
+                shutil.rmtree(file_path)  
                 
 
 def get_apk_package_name(apk_file_path):
-    # 构造命令
+   
     command = ["aapt", "dump", "badging", apk_file_path]
-    # 运行命令并获取输出
+    
     output = subprocess.check_output(command, universal_newlines=True)
-    # 在输出中查找包名信息
+    
     package_name = None
     for line in output.splitlines():
         if line.startswith("package: name="):
@@ -320,10 +312,9 @@ def get_main_activity(manifest):
     
 
 def has_valid_signature_v2_v3_v4(apk_path):
-    """检查 APK 是否有有效的 v2、v3 或 v4 签名"""
+    
     try:
-        # 运行 apksigner 命令，验证 APK 签名并输出结果
-        #result = subprocess.run(['apksigner', 'verify', '-v', apk_path], capture_output=True, check=True, text=True)
+        
         cmd = ['apksigner', 'verify', '-v', apk_path]
         p = subprocess.Popen(cmd,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -340,10 +331,10 @@ def has_valid_signature_v2_v3_v4(apk_path):
         p.kill()
         
 
-        # 检查输出中是否包含 v2、v3 或 v4 签名
+        
         return '(APK Signature Scheme v2): true' in output or '(APK Signature Scheme v3): true' in output or '(APK Signature Scheme v4): true' in output
     except subprocess.CalledProcessError:
-        # 如果运行命令时发生错误，则返回 False
+        
         return False
 
         
@@ -359,8 +350,8 @@ class TimeoutException(Exception):
 def timeout_handler(signum, frame):
     raise TimeoutException()
 
-max_tries = 1  # 最大尝试次数
-max_timeouts = 2  # 最大超时次数
+max_tries = 1  
+max_timeouts = 2 
 
 def Check_behavior_change(input_str):
     if("exit" in input_str or "killProcess" in input_str or "Intent intent" in input_str):
@@ -369,13 +360,13 @@ def Check_behavior_change(input_str):
         return False
 
 def find_num_and_check_100000000(input_str):
-    # 匹配大于100000000的数字
+   
     pattern = r'\b([1-9][0-9]{8,})\b'
 
-    # 在字符串中搜索
+    
     match = re.search(pattern, input_str)
     if match:
-        # 如果找到了大于100000000的数字，检查后面是否出现了 System.nanoTime()
+        
         num_str = match.group(1)
         index = match.end()
         if 'System.nanoTime' not in input_str[index:] and 'SystemClock.elapsedRealtimeNanos'not in input_str[index:]:
@@ -385,13 +376,13 @@ def find_num_and_check_100000000(input_str):
 
 
 def find_num_and_check_100(input_str):
-    # 匹配大于100的数字
+    
     pattern = r'\b([1-9]\d{2,})\b'
 
-    # 在字符串中搜索
+    
     match = re.search(pattern, input_str)
     if match:
-        # 如果找到了大于100的数字，检查后面是否出现了 System.nanoTime()
+       
         num_str = match.group(1)
         index = match.end()
         if 'System.currentTimeMillis' not in input_str[index:] and 'SystemClock.elapsedRealtime' not in input_str[index:]:
@@ -451,7 +442,7 @@ def otherApp(string):
 
 
 def start_hluda_server():
-    # 执行adb shell "su -c ./data/local/tmp/hluda-server-15.1.28-android-arm64 &"命令
+   
     cmd = ['adb', 'shell', 'su', '-c', './data/local/tmp/hluda-server-15.1.28-android-arm64', '&']
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -468,7 +459,7 @@ def start_hluda_server():
     p.kill()
 
 def forward_port():
-    # 执行adb forward tcp:27042 tcp:27042命令
+    
     cmd = ['adb', 'forward', 'tcp:27042', 'tcp:27042']
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -505,7 +496,7 @@ def install_apk(package_name, apk_file):
         stdout, stderr = p.communicate()
         
 
-    #p.terminate()
+    
     p.kill()
     
     if package_name.encode() in stdout:
@@ -580,9 +571,7 @@ def uninstall_apk(package_name):
 
 
 def start_app(package_name,main_activity):
-    """
-    启动指定包名的应用程序
-    """
+    
     cmd = f"adb shell am start -n {package_name}/{main_activity}"
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -598,9 +587,7 @@ def start_app(package_name,main_activity):
 
 
 def stop_app(package_name):
-    """
-    停止指定包名的应用程序
-    """
+    
     cmd = f"adb shell am force-stop {package_name}"
     #process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
     #output, error = process.communicate()
@@ -621,9 +608,7 @@ def stop_app(package_name):
 
 
 def get_target_pid(package_name):
-    """
-    获取指定包名的PID
-    """
+   
     cmd = f"adb shell ps | grep {package_name}"
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -647,9 +632,7 @@ def get_target_pid(package_name):
 
 
 def check_log(pid):
-    """
-    执行adb logcat命令并检查返回结果中是否包含指定字符串
-    """
+    
     cmd = f"adb logcat -d | grep {pid} | grep SYSTEM"
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -672,12 +655,12 @@ def check_log(pid):
 
 
 def smali_bak_dex(apk_file_path, smali_jar_path):
-    # 获取所有smali文件的路径
+    
     smali_dir_path = os.path.join(os.path.dirname(apk_file_path), 'smali')
     smaliList = []
     traverse_folder_smali(smali_dir_path, smaliList)
 
-    # 生成finalDex目录
+   
     finalDex_path = os.path.join(os.path.dirname(apk_file_path), 'finalDex')
     if not os.path.exists(finalDex_path):
         os.makedirs(finalDex_path)
@@ -689,11 +672,11 @@ def smali_bak_dex(apk_file_path, smali_jar_path):
     
 
     while start_index < len(smaliList):
-        # 获取当前批次的smali文件列表
+        
         end_index = min(start_index + batch_size, len(smaliList))
         batch_smali_list = smaliList[start_index:end_index]
 
-        # 将批次的smali文件名转换为文件路径
+        
         batch_smali_paths = [f"./{filename}" for filename in batch_smali_list]
         output_file = os.path.join(finalDex_path, f"classes{index + 1}.dex")
 
@@ -701,10 +684,6 @@ def smali_bak_dex(apk_file_path, smali_jar_path):
 
         while True:
             try:
-                #command_str = " ".join(command)
-                #print("command_str", len(command_str))
-                # 执行命令行命令
-                #subprocess.run(command, check=True)
                 print(len(batch_smali_paths))
                 p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -717,20 +696,20 @@ def smali_bak_dex(apk_file_path, smali_jar_path):
                     
                 if p.returncode != 0:
                     print(f'Error: {stderr.decode()}')
-                    #新加入
+                    
                     print("TOO MUCH")
                     batch_size = int(batch_size / 2)
                     if batch_size < 2:
                         start_index = start_index + 1
                         if start_index >= len(smaliList):
                             raise ValueError("Unable to compile remaining smali files")
-                    # 获取当前批次的smali文件列表
+                    
                     end_index = min(start_index + batch_size, len(smaliList))
                     batch_smali_list = smaliList[start_index:end_index]
-                    # 将批次的smali文件名转换为文件路径
+                    
                     batch_smali_paths = [f"./{filename}" for filename in batch_smali_list]
                     output_file = os.path.join(finalDex_path, f"classes{index + 1}.dex")
-                    # 构造新的命令行命令
+                    
                     command = ['java', '-jar', smali_jar_path, 'assemble'] + batch_smali_paths + ['-o', output_file]
                     continue
 
@@ -743,20 +722,20 @@ def smali_bak_dex(apk_file_path, smali_jar_path):
                 break
             
             except Exception as e:
-                # 如果出现了报错，减少batch_size
+                
                 print("TOO MUCH")
                 batch_size = int(batch_size / 2)
                 if batch_size < 2:
                     start_index = start_index + 1
                     if start_index >= len(smaliList):
                         raise ValueError("Unable to compile remaining smali files")
-                # 获取当前批次的smali文件列表
+                
                 end_index = min(start_index + batch_size, len(smaliList))
                 batch_smali_list = smaliList[start_index:end_index]
-                # 将批次的smali文件名转换为文件路径
+                
                 batch_smali_paths = [f"./{filename}" for filename in batch_smali_list]
                 output_file = os.path.join(finalDex_path, f"classes{index + 1}.dex")
-                # 构造新的命令行命令
+                
                 command = ['java', '-jar', smali_jar_path, 'assemble'] + batch_smali_paths + ['-o', output_file]
                 continue
             else:
@@ -765,14 +744,4 @@ def smali_bak_dex(apk_file_path, smali_jar_path):
 
 def newLine():
     print("\n")
-'''    
-def start_hluda_server():
-    # 执行adb shell "su -c ./data/local/tmp/hluda-server-15.1.28-android-arm64 &"命令
-    cmd = ['adb', 'shell', 'su', '-c', './data/local/tmp/hluda-server-15.1.28-android-arm64', '&']
-    subprocess.run(cmd)
 
-def forward_port():
-    # 执行adb forward tcp:27042 tcp:27042命令
-    cmd = ['adb', 'forward', 'tcp:27042', 'tcp:27042']
-    subprocess.run(cmd)
-'''
