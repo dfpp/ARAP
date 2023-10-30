@@ -1,5 +1,4 @@
-#Anti-Emulator Part A B C D E F G H I J K L M N O P Q
-#↓-------------OLD——————————————————————————————————————————————————————————————
+#Anti-Emulator
 AntiEmulatorClassesc1 = "Ljava/lang/Class;"
 AntiEmulatorClassesc2 = "Ljava/lang/reflect/Method;"
 AntiEmulatorClassesc3 = "Landroid/os/Build;"
@@ -14,8 +13,6 @@ AntiEmulatorMethodsm3 = "Ljava/lang/Class.getMethod"
 AntiEmulatorMethodsm4 = "Ljava/lang/reflect/Method.invoke"
 AntiEmulatorMethodsm5 = "Ljava/lang/Runtime.getRuntime"
 AntiEmulatorMethodsm6 = "Ljava/lang/Runtime.exec"
-#↑-------------OLD——————————————————————————————————————————————————————————————
-
 
 AntiEmulatorMethodsm7 = "Landroid/telephony/TelephonyManager.getDeviceID"
 AntiEmulatorMethodsm8 = "Landroid/telephony/TelephonyManager.getLine1Number"
@@ -31,16 +28,7 @@ AntiEmulatorMethodsm17 = "Landroid/telephony/TelephonyManager.getNetworkOperator
 
 TelephonyManagerA = [eval("AntiEmulatorMethodsm"+str(i)) for i in range(7,18)]
 
-'''
-AntiEmulatorTelephonyManagerDiscriminant
 
-A m7-16 Telephony manager related methods  待改进
-B 用于比较的相关字符串  在下面 AntiEmulatorEmulatorDeviceIdentifierDiscriminant
-C 用于比较的相关字符串 要求全部出现
-A AND （B or C）
-'''
-
-#↓-------------OLD——————————————————————————————————————————————————————————————
 AntiEmulatorAttributesa1 = "Landroid/os/Build.HARDWARE"
 AntiEmulatorAttributesa2 = "Landroid/os/Build.BOARD"
 AntiEmulatorAttributesa3 = "Landroid/os/Build.BRAND"
@@ -49,9 +37,7 @@ AntiEmulatorAttributesa5 = "Landroid/os/Build.FINGERPRINT"
 AntiEmulatorAttributesa6 = "Landroid/os/Build.MODEL"
 AntiEmulatorAttributesa7 = "Landroid/os/Build.MANUFACTURER"
 AntiEmulatorAttributesa8 = "Landroid/os/Build.PRODUCT"
-#↑-------------OLD——————————————————————————————————————————————————————————————
 
-#↓-------------OLD——————————————————————————————————————————————————————————————
 AntiEmulatorStringsJavas1 = "android.os.SystemProperties"
 AntiEmulatorStringsJavas2 = "getprop"
 AntiEmulatorStringsJavas3 = "ro.hardware"
@@ -99,10 +85,7 @@ AntiEmulatorStringsJavas43 = "ro.kernel.qemu.gles"
 AntiEmulatorStringsJavas44 = "init.svc.qemud"
 AntiEmulatorStringsJavas45 = "init.goldfish.rc"
 AntiEmulatorStringsJavas46 = "init.svc.qemu-props"
-#↑-------------OLD——————————————————————————————————————————————————————————————
 
-
-#↓-------------OLD——————————————————————————————————————————————————————————————
 AntiEmulatorStringsJavas47 = "qemu.hw.mainkeys"
 AntiEmulatorStringsJavas48 = "ro.radio.use-ppp"
 
@@ -151,7 +134,7 @@ AntiEmulatorStringsNatives41 = "ro.kernel.qemu.gles"
 AntiEmulatorStringsNatives42 = "init.svc.qemud"
 AntiEmulatorStringsNatives43 = "init.goldfish.rc"
 AntiEmulatorStringsNatives44 = "init.svc.qemu-props"
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 
 AntiEmulatorStringsNatives45 = "qemu.hw.mainkeys"
 AntiEmulatorStringsNatives46 = "ro.radio.use-ppp"  
@@ -198,19 +181,7 @@ EmulatorRelatedStringsAndSystemPropertiesH.append(AntiEmulatorStrings55)
 
 EmulatorRelatedStringsAndSystemPropertiesH = EmulatorRelatedStringsAndSystemPropertiesH + Emulatorexa
 EmulatorRelatedStringsAndSystemPropertiesI = [AntiEmulatorStrings56,AntiEmulatorStrings57,AntiEmulatorStrings58]
-'''
-AntiEmulatorEmulatorRelatedStringsAndSystemPropertiesDiscriminant
-A s1-2 “Android.os.SystemProperties” or “getprop”
-B s3-14 Strings for getting smartphone properties
-C s15-18 s21-29 47-48 string for comparison of properties
-D javas30-46 emulator related strings
-E m1 the isUserAMonkey method
-F natives1-12 45-46 strings for getting properties
-G natives13-16 s19-27 string for comparison of properties
-H natives28-44 emulator related strings
 
-(A∧B∧C)V(D∨E)∨((F∧G)∨H)  
-'''
 
 AntiEmulatorHardwareComponentsStringsJavaAndNatives1 = "/proc/cpuinfo"
 AntiEmulatorHardwareComponentsStringsJavaAndNatives2 = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq"
@@ -271,23 +242,6 @@ HardwareComponentsJ = [AntiEmulatorHardwareComponentsStringsJavaAndNatives24, An
 HardwareComponentsK = [AntiEmulatorHardwareComponentsStringsJavaAndNatives26, AntiEmulatorHardwareComponentsStringsJavaAndNatives27]
 HardwareComponentsL = [AntiEmulatorHardwareComponentsStringsJavaAndNatives28, AntiEmulatorHardwareComponentsStringsJavaAndNatives29, AntiEmulatorHardwareComponentsStringsJavaAndNatives30]
 
-'''
-AntiEmulatorHardwareComponentsDiscriminant
-A s1-11 Hardware components related strings
-B m1 Get the bluetooth   若getDefaultAdapter和android.bluetooth.adapter同时存在，则不是反分析手段，若只出现getDefaultAdapter则为反分析
-C boths12-13 /proc/misc
-D boths14-15 /proc/ioports
-E boths16-17 /sys/devices/virtual/misc/cpu_dma_latency/uevent
-F m2 m5 m6 Tethering  
-G boths18-19 rild.libpath
-H boths20-22 ro.build.display.id
-
-J s24 and s25 查询电量
-K s26 and s27 查询基带
-L s28-30 cpu型号\主板平台\系统的发行版本
-
-A∨B∨C∨D∨E∨F∨G∨H∨(K and L)  #去掉J B F
-'''
 
 AntiEmulatorStringsJavas50 = "15555215554"
 AntiEmulatorStringsJavas51 = "15555215556"
@@ -331,14 +285,6 @@ DeviceIdentifierA.append(AntiEmulatorStringsJavas94)
 
 TelephonyManagerB = TelephonyManagerB + DeviceIdentifierA
 
-"""
-AntiEmulatorEmulatorDeviceIdentifierDiscriminant
-
-A javas50-67 Emulator Default device identifier
-
-A
-
-"""
 
 AntiEmulatorSensorInformation1 = "Landroid/hardware/SensorManager.getDefaultSensor"
 AntiEmulatorSensorInformation2 = "Landroid/hardware/SensorManager.registerListener"
@@ -348,14 +294,7 @@ AntiEmulatorSensorInformation4 = "lcom/google/firebase/crashlytics/internal/comm
 SensorInformationA = [AntiEmulatorSensorInformation1]
 SensorInformationB = [AntiEmulatorSensorInformation2]
 SensorInformationC = [AntiEmulatorSensorInformation3,AntiEmulatorSensorInformation4]
-'''
-AntiEmulatorSensorInformationDiscriminant   
 
-A m17 Sensor related methods  
-
-有A没B
-
-'''
 
 ContextSwitchBasedDetectionNativeS1 = "pthread_create"
 ContextSwitchBasedDetectionNativeS2 = "pthread_join"
@@ -367,13 +306,7 @@ ContextSwitchBasedDetectionNativeS4 = "pthread_mutex_lock"
 ContextSwitchBasedDetectionA = [ContextSwitchBasedDetectionNativeS1]
 ContextSwitchBasedDetectionB = [ContextSwitchBasedDetectionNativeS4]
 ContextSwitchBasedDetectionC = [ContextSwitchBasedDetectionNativeS3]
-'''
-AntiEmulatorCPUPerformanceContextSwitchBasedDetectionDiscriminant  待改进
 
-C 1024个90 或者sleep
-A and Not B or C 
-
-'''
 
 
 #TranslationBlockCacheBasedDetectionHexcode = "40 fd ff 7f 01 00 00 00 f0 41 2d e9 00 60 a0 e3 00 70 a0 e3 0f 80 a0 e1 00 40 a0 e3 01 70 87 e2 00 50 98 e5 01 40 84 e2 0f 80 a0 e1 0c 80 48 e2 00 50 88 e5 01 60 86 e2 0a 00 54 e3 02 00 00 aa 0a 00 57 e3 00 00 00 aa f5 ff ff ea 04 00 a0 e1 f0 81 bd e8"
@@ -391,11 +324,7 @@ TranslationBlockCacheBasedDetectionHexcode5 = b'\x04`\x66\x66\xc3\x90\x90\x90'
 TranslationBlockCacheBasedDetectionHexcode6 = b"\xb8\x31\xc0\x31\xc0\xa3\x00\x60\x66\x66"
 TranslationBlockCacheBasedDetectionHexcode7 = b"\xb8\x90\x90\x90\x90\xa3\x00\x60\x66\x66"
 
-'''
-AntiEmulatorCPUPerformanceTranslationBlockCacheBasedDetectionDiscriminant  待改进
 
-A and 05 10 00 00
-'''
 
 #MisalignedVectorizationBasedDetectionHexcode = "05 10 00 00"
 #MisalignedVectorizationBasedDetectionHexcode1 = "05 00 01 E3 0E 00 80 E8"
@@ -422,32 +351,7 @@ MisalignedVectorizationBasedDetectionS1 = "signal"
 
 MisalignedVectorizationBasedDetectionA = [MisalignedVectorizationBasedDetectionS1]
 
-'''
-AntiEmulatorCPUPerformanceMisalignedVectorizationBasedDetectionDiscriminant  待改进  #去掉signal
-
-isEmu = True
-AlignTrapHandler(change isEmu to false)
-InstallHandler(AlignTrapHandler)   设置陷阱
-PTR = misaligned pointer for Read/Write memory
-Execute PTR  执行未对齐指令
-Return isEmu
-
-or
-
-/* Put some known data into memory */
-int * ptr = calloc (1 , sizeof ( int) );
-ptr [0] = 0 x12345678 ;
-
-// Shift address to a non - word boundary
-ptr = ( int *) (( char *) ptr + 0 x1 );
-
-// Try to read from misaligned address
-asm (" mov r3 ,%0 " : : "r"( ptr ));
-asm (" LDM r3 ,{%0} ": "=r"( val ) : : ) ;  将地址上的值加载到寄存器上 从内存到寄存器
-
-printf ("0x %08 X\n", val );
-
-'''
+'
 
 
 #UpdatestoExecutionStateBitsHexcode1 = "02 1c a0 e3 01 f0 22 e1"
@@ -558,15 +462,7 @@ UpdatestoExecutionStateBitsHexcode64 = b"\xe3\xa0\xc0\x00\xe1\x22\xf0\x0c"
 UpdatestoExecutionStateBitsHexcodeA = [eval("UpdatestoExecutionStateBitsHexcode"+str(i)) for i in range(1,65) if i % 2 == 1]
 UpdatestoExecutionStateBitsHexcodeB = [eval("UpdatestoExecutionStateBitsHexcode"+str(i)) for i in range(1,65) if i % 2 == 0]
 
-'''
-AntiEmulatorCPUPerformanceUpdatesToExecutionStateBitsDiscriminant  待改进
 
-isEmu =T
-设置陷阱 (陷阱中isEmu =F)
-执行未定义指令
-return isEmu
-
-'''
 IncompleteSanitizationforUndefinedInstructionsS1 = "signal"
 #IncompleteSanitizationforUndefinedInstructionsHexcode1 = "91 30 00 90"
 #IncompleteSanitizationforUndefinedInstructionsHexcode2 = "91 3F FF 9F"
@@ -578,22 +474,7 @@ IncompleteSanitizationforUndefinedInstructionsHexcode2 = b'\x91\x3f\xff\x9f'
 
 IncompleteSanitizationforUndefinedInstructionsA = [IncompleteSanitizationforUndefinedInstructionsS1]
 
-'''
-AntiEmulatorCPUPerformanceIncompleteSanitizationForUndefinedInstructionsDiscriminant  待改进
 
-/* Put some known data into memory */
-int * ptr = calloc (1 , sizeof ( int) );
-ptr [0] = 0 x12345678 ;
-asm ("mov r8 ,%0 " : : "r"( ptr ));
-
-/* Read ptr [0] with CPSR .E set to 1 */
-asm ("msr CPSR_x , #0 x200 \n\t");
-asm ("ldr r4 ,[ r8 ]\n\t");
-asm ("msr CPSR_x , #0 x000 \n\t");
-
-asm ("mov %0 , r4" : "=r"( val ) : : );
-printf ("0x %08X\n", val );
-'''
 
 AntiEmulatorMethodsm18 = "Landroid/media/projection/MediaProjectionManager.createScreenCaptureIntent"
 AntiEmulatorMethodsm19 = "Landroid/media/projection/MediaProjectionManager.getMediaProjection"
@@ -615,14 +496,7 @@ GraphicalPerformanceD = [AntiEmulatorMethodsm26, AntiEmulatorMethodsm27]
 
 
 
-'''
-AntiEmulatorGraphicalPerformanceDiscriminant
-A m18-20 MediaProjection related methods
-B m21 ImageReader related methods
-C m22 and m23 and 24 and 25 Choreographer related methods
-D m26-27 时间测量函数
-C and D
-'''
+
 
 AntiEmulatorStringsJavas68 = "com.google.android.gsf.login"   #GoogleLoginService.apk
 AntiEmulatorStringsJavas69 = "GoogleLoginService.apk"
@@ -656,17 +530,7 @@ PresenceofOtherAppsD = [AntiEmulatorMethodsm24,AntiEmulatorMethodsm28]
 PresenceofOtherAppsE = [AntiEmulatorStringsJavas88, AntiEmulatorStringsJavas90]
 PresenceofOtherAppsF = [AntiEmulatorStringsJavas89, AntiEmulatorAttributesa9]
 
-'''
-AntiEmulatorPresenceofOtherAppsDiscriminant
-A javaS68-80 Other Apps related strings
-B m25 查询其他app是否存在
-C m26 m27 返回列表数量  用CG图实现，在一个函数中，调用getInstalledApplications size 而不调用equals
-D m24 m28查询服务
-E s88 s90谷歌服务
-F s89 a9 短信服务/通话记录
-(A∧B)∨(CG(C))∨(D∧E)∨(E∧F∧C) -> 去掉DE
 
-'''
 
 CurrentBuildA = [eval("AntiEmulatorAttributesa"+str(i)) for i in range(1,9)] 
 CurrentBuildB = [eval("AntiEmulatorStringsJavas"+str(i)) for i in range(15,19)]
@@ -676,14 +540,7 @@ CurrentBuildC.append(AntiEmulatorStringsJavas50)
 CurrentBuildD = ["sdk","google_sdk","android_id","Landroid/os/Build.PRODUCT"]
 CurrentBuildE = ["emulator","android_id","generic","Landroid/os/Build.DEVICE"]
 CurrentBuildF = ["Landroid/os/Build.HARDWARE","ranchu","goldfish"]
-'''
-AntiEmulatorCurrentBuildDiscriminant
 
-A a1-8 android.os.Build attributes
-B s15-18  string for comparison of properties
-C s21-29  string for comparison of properties
-A∧(B∨C) or D or E
-'''
 
 #Anti App-Level Virtualization part
 #FilePath
@@ -712,16 +569,7 @@ FilePathB = [eval("FilePathm"+str(i)) for i in range(1,3)]
 FilePathC = [FilePaths8,"cat /proc/self/maps"] 
 FilePathD = [eval("FilePathm"+str(i)) for i in range(3,7)] 
 FilePathE = [FilePaths9,FilePaths10]
-'''
-FilePath
-A s1-7 多开app的包名
-B m1 and m2 查询当前路径    CG
-C s8 利用/proc/self/maps
-D m3 and m4 and m5 and m6 查找两个包名完全相同的app  CG
-E 多开之后的文件路径特征
 
-(A∧(B∨C))∨D∨E
-'''
 #ShareUID
 ShareUIDa1 = "Ljava/util/Locale.CHINA"
 
@@ -784,18 +632,7 @@ ShareUIDE = [eval("ShareUIDm"+str(i)) for i in range(5,22)]
 ShareUIDF = [eval("ShareUIDm"+str(i)) for i in range(22,35)]
 ShareUIDG = [ShareUIDc1]
 ShareUIDH = [ShareUIDs5]
-'''
-ShareUID
-A s1 and s2 获取uid
-B a2 获取UID
-C s3 or s4 /data/data/
-D m1-4 检查权限
-E m5-21 申请权限
-F m22-34 请求危险权限
-H s5 ps
-((A or B) and (C and H) and G)or  
 
-'''
 
 #PortDetection
 PortDetectionm1 = "Ljava/util/Random.<init>"
@@ -816,13 +653,7 @@ PortDetectionA = [PortDetectionm1, PortDetectionm2, PortDetectionm3]
 PortDetectionB = [PortDetections1, PortDetections2]
 PortDetectionC = [PortDetectionm4, PortDetectionm5]
 PortDetectionD = [PortDetections3, PortDetections4]
-'''
-A m1 and m2 and m3 
-B s1 and s2
-C m4-5
-D s3-4
-A and B and (C or D)
-'''
+
 #CodeInjectionAndHooking
 CodeInjectionAndHookings1 = "/proc/self/maps"
 
@@ -842,17 +673,11 @@ CodeInjectionAndHookingA = [eval("CodeInjectionAndHookings"+str(i)) for i in ran
 CodeInjectionAndHookingB = [CodeInjectionAndHookingm1, CodeInjectionAndHookingm2, CodeInjectionAndHookingm3]  #CG
 CodeInjectionAndHookingC = [CodeInjectionAndHookings6]
 
-'''
-CodeInjectionAndHooking
-A s1 and s2 and s3 and s4 and s5 检测可疑so库
-B m1 and m2 and m3
-C s6
-A or (B and C)
-'''
+
 
 #Anti-Hooking part
 #Anti-Hooking  Xpose and Frida
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 AntiHookingClassesc1 = "Ldalvik/system/DexFile;"
 AntiHookingClassesc2 = "Ljava/lang/StackTraceElement;"
 AntiHookingClassesc3 = "Landroid/app/ActivityManager$RunningServiceInfo;"
@@ -860,8 +685,7 @@ AntiHookingClassesc4 = "Landroid/app/ActivityManager;"
 AntiHookingClassesc5 = "Landroid/content/pm/ApplicationInfo;"
 AntiHookingClassesc6 = "Ljava/util/Enumeration;"
 AntiHookingClassesc7 = "Ljava/lang/reflect/Modifier;"
-#↑-------------OLD——————————————————————————————————————————————————————————————
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 AntiHookingMethodsm1 = "Ljava/lang/StackTraceElement.getClassName"
 AntiHookingMethodsm2 = "Ljava/lang/StackTraceElement.getMethodName"
 AntiHookingMethodsm3 = "Landroid/app/ActivityManager.getRunningServices"
@@ -870,24 +694,22 @@ AntiHookingMethodsm5 = "Ljava/lang/reflect/Modifier.isNative"
 AntiHookingMethodsm6 = "Ldalvik/system/DexFile.entries"
 AntiHookingMethodsm7 = "Ljava/util/Enumeration.hasMoreElements"
 AntiHookingMethodsm8 = "Ljava/util/Enumeration.nextElement"
-#↑-------------OLD——————————————————————————————————————————————————————————————
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 AntiHookingAttributea1 = "Landroid/content/pm/ApplicationInfo.sourceDir"
 AntiHookingAttributea2 = "Landroid/app/ActivityManager$RunningServiceInfo.process"
 AntiHookingAttributea3 = "Landroid/content/pm/ApplicationInfo.processName"
-#↑-------------OLD——————————————————————————————————————————————————————————————
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 AntiHookingStringsJavas1 = "com.saurik.substrate"
 AntiHookingStringsJavas2 = "com.saurik.substrate.MS$2"
 AntiHookingStringsJavas3 = "de.robv.android.xposed.XposedBridge"
 AntiHookingStringsJavas4 = "XposedBridge.jar"
 #AntiHookingStringsJavas5 = "xposed"
 AntiHookingStringsJavas5 = "XposedBridge.jar"
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 
 AntiHookingStringsJavas6 = "de.robv.android.xposed.installer"
 
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 AntiHookingStringsJavas8 = "classes.dex"
 AntiHookingStringsJavas9 = "classes2.dex"
 AntiHookingStringsJavas10 = "classes3.dex"
@@ -900,19 +722,17 @@ AntiHookingStringsJavas14 = "LIBFRIDA"
 AntiHookingStringsJavas15 = "frida-gadget"
 AntiHookingStringsJavas16 = "frida-gadget"
 AntiHookingStringsJavas17 = "frida-agent"
-#↑-------------OLD——————————————————————————————————————————————————————————————
 
-#↓-------------OLD——————————————————————————————————————————————————————————————
 AntiHookingStringsNatives1 = "com.saurik.substrate"
 AntiHookingStringsNatives2 = "com.saurik.substrate.MS$2"
 AntiHookingStringsNatives3 = "de.robv.android.xposed.XposedBridge"
 AntiHookingStringsNatives4 = "XposedBridge.jar"
 #AntiHookingStringsNatives5 = "xposed"
 AntiHookingStringsNatives5 = "XposedBridge.jar"
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 
 AntiHookingStringsNatives6 = "de.robv.android.xposed.installer"
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 
 AntiHookingStringsNatives8 = "fridaserver"
 AntiHookingStringsNatives9 = "LIBFRIDA"
@@ -920,7 +740,7 @@ AntiHookingStringsNatives9 = "LIBFRIDA"
 AntiHookingStringsNatives10 = "frida-gadget"
 AntiHookingStringsNatives11 = "frida-gadget"
 AntiHookingStringsNatives12 = "frida-agent"
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 
 AntiHookingStringsNatives16 = "de.robv.android.xposed.XposedHelpers"
 AntiHookingStringsNatives20 = "com.saurik.substrate"
@@ -943,17 +763,7 @@ XposedF = XposedF + xposedExa
 
 Magisk = ["/sbin/magisk", "/data/adb/magisk", "/sbin/.magisk", "/cache/.disable_magisk", "/dev/.magisk.unblock", "/cache/magisk.log", "/data/adb/magisk.img", "/data/adb/magisk.db", "/data/adb/.boot_count", "/data/adb/magisk_simple", "/init.magisk.rc","com.topjohnwu.magisk"]
 
-'''
-AntiHookingXposeDiscriminant
-A javas1-6 At least one of strings related to the frameworks  
-B s8-12 At least one of the strings for the .dex file
-C a1 ApplicationInfo.sourceDir for the path of the APK
-D m4 method for getting the path of the APK
-E m5 check if a method is native thus hooked
-F natives1-7 16 At least one of strings related to the frameworks
 
-(A∨((C∨D)∧B∧E))∨F -> A or F
-'''
 FridaExa = ["re.frida.server","/data/local/tmp/re.frida.server/frida-agent-32.so","/data/local/tmp/re.frida.server/frida-agent-64.so","frida-agent-32.so","frida-agent-64.so"]
 FridaA = [eval("AntiHookingStringsJavas"+str(i)) for i in range(13,18)]
 FridaB = [eval("AntiHookingStringsJavas"+str(i)) for i in range(8,13)]
@@ -965,20 +775,10 @@ FridaF.append(AntiHookingStringsNatives17)
 FridaF.append(AntiHookingStringsNatives18)
 FridaF.append(AntiHookingStringsNatives19)
 FridaF = FridaF + FridaExa
-'''
-AntiHookingFridaDiscriminant
-A javas13-17 At least one of strings related to the frameworks  
-B s8-12 At least one of the strings for the .dex file
-C a1 ApplicationInfo.sourceDir for the path of the APK
-D m4 method for getting the path of the APK
-E m5 check if a method is native thus hooked
-F natives8-12 17-19 At least one of strings related to the frameworks
 
-(A∨((C∨D)∧B∧E))∨F -> A or F
-'''
 
 #Anti-Debugging part A B C D E F G H I J K L M N O
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 AntiDebuggingUsingTracerPIDClassesc1 = "Landroid/os/Debug;"
 AntiDebuggingUsingTracerPIDClassesc2 = "Landroid/app/ActivityManager;"
 
@@ -992,9 +792,7 @@ AntiDebuggingUsingTracerPIDStringsJavas3 = "/proc/"
 AntiDebuggingUsingTracerPIDStringsJavas4 = "/status"
 AntiDebuggingUsingTracerPIDStringsJavas5 = "getpid"
 AntiDebuggingUsingTracerPIDStringsJavas6 = "pid"
-#↑-------------OLD——————————————————————————————————————————————————————————————
 
-#↓-------------OLD——————————————————————————————————————————————————————————————
 AntiDebuggingUsingTracerPIDSymbolsNativesy1 = "fork"
 AntiDebuggingUsingTracerPIDSymbolsNativesy2 = "getppid"
 AntiDebuggingUsingTracerPIDSymbolsNativesy3 = "ptrace"
@@ -1010,7 +808,7 @@ AntiDebuggingUsingTracerPIDStringsNatives3 = "/proc/"
 AntiDebuggingUsingTracerPIDStringsNatives4 = "/status"
 AntiDebuggingUsingTracerPIDStringsNatives5 = "/proc/PID/Status"
 AntiDebuggingUsingTracerPIDStringsNatives6 = "pid"
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 UsingTracerPIDexa = ["/proc/self/status","TracerPid:","tracer_pid"]
 
 UsingTracerPIDA = [AntiDebuggingUsingTracerPIDStringsJavas1] 
@@ -1021,17 +819,8 @@ UsingTracerPIDE = [AntiDebuggingUsingTracerPIDStringsNatives1]
 UsingTracerPIDF = [AntiDebuggingUsingTracerPIDStringsNatives2]  
 UsingTracerPIDG = [eval("AntiDebuggingUsingTracerPIDStringsNatives"+str(i)) for i in range(3,6)] 
 UsingTracerPIDH = UsingTracerPIDexa
-'''
-AntiDebuggingUsingTracerPIDDiscriminant
-A javas1 “TracerPid” string 原有
-B javas2 “/proc/self/status” string 原有
-C javas3-5 both “/proc/” + “/status” strings and "getpid" 原有
-D i1-4 fork, getpid, ptrace or waitpid symbols  原有
 
 
-(A∧((B∨C)∨D))
-'''
-#↓-------------OLD——————————————————————————————————————————————————————————————
 AntiDebuggingDebuggerRelatedValueClassesc1 = "Landroid/content/Context;"
 AntiDebuggingDebuggerRelatedValueClassesc2 = "Landroid/content/pm/ApplicationInfo;"
 AntiDebuggingDebuggerRelatedValueClassesc3 = "Landroid/content/pm/ApplicationInfo;"
@@ -1051,11 +840,9 @@ AntiDebuggingDebuggerRelatedValueAttributesa3 = "LsubstituteWithTheApplicationPa
 AntiDebuggingDebuggerRelatedValueStringsJavas1 = "ro.debuggable"
 AntiDebuggingDebuggerRelatedValueStringsJavas2 = "getprop"
 AntiDebuggingDebuggerRelatedValueStringsJavas3 = "android.os.SystemProperties"
-#↑-------------OLD——————————————————————————————————————————————————————————————
 
-#↓-------------OLD——————————————————————————————————————————————————————————————
 AntiDebuggingDebuggerRelatedValueStringsNatives1 = "ro.debuggable"
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 
 
 AntiDebuggingDebuggerRelatedValueSymbolsNativesy1 = "debuggerConnected"
@@ -1136,46 +923,15 @@ DebuggerRelatedValueK.append(AntiDebuggingDebuggerRelatedValueStrings36)
 DebuggerRelatedValueK.append(AntiDebuggingDebuggerRelatedValueStrings37)
 
 
-'''
-AntiDebuggingDebuggerRelatedValueDiscriminant
-A javas1 “ro.debuggagle” string for the system property 原有
-B javas2-3 “Android.os.SystemProperties” or “getProp” strings 原有
-C javaa2-3 At least one of the attributes related to a debuggable status 原有
-D natives1 “ro.debuggagle” string
-E m4-m6 Methods related to the presence of a debugger 原有
-F s4-5 查询23946端口状态
-G s6-9 s35 调试器相关字符串
-H s10 and s11      cmdline 1  检查当前进程的父进程或自身是否是 "zygote"
-I s15 and s16 and s11 cmdline 2  检查当前进程的父进程或自身是否是 "zygote"
-J s12 and s14 and s36 and s37  task1  apk进程
-K s15 and s21 and s14 and s36 and s37 task2 apk进程
-L s13 and s14  fd1 FD文件
-M s15 and s23 and s14 fd2 FD文件
-N s17 libart.so
-O s18-19 安卓系统自带调试检测函数  找到进程中libdvm.so中的dvmDbgIsDebuggerConnected()函数  dalvik/art
-P s24-29 
-Q S30 P+Q status/stat中字段是否为T
-R S31-33 
-S S34 R+S wchan字段是否为ptrace_stop
-
-((A∧B)∨C∨D)∨E∨F∨G∨(H∨I)∨J∨K∨L∨M∨(N∧O)∨(P∧Q)∨(R∧S)  #去除PQ
-
-'''
-#↓-------------OLD——————————————————————————————————————————————————————————————
 AntiDebuggingAlteringDebuggerMemoryStringsNatives1 = "libart.so"
 AntiDebuggingAlteringDebuggerMemoryStringsNatives2 = "_ZTVNa3rt4JDWP12JdwpAdbStateE"
 
 AntiDebuggingAlteringDebuggerMemorySymbolsNativesy1 = "gDvm"
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 
 AlteringDebuggerMemoryA = [AntiDebuggingAlteringDebuggerMemoryStringsNatives1, AntiDebuggingAlteringDebuggerMemoryStringsNatives2, AntiDebuggingAlteringDebuggerMemorySymbolsNativesy1]
 AlteringDebuggerMemoryB = [AntiDebuggingAlteringDebuggerMemorySymbolsNativesy1]
-'''
-AntiDebuggingAlteringDebuggerMemoryStructureDiscriminant
-A natives1-2 both the strings extracted from the ART protection  
-B i1  i1 the gDvm symbol for DALVIK
-A or B
-'''
+
 HashValueComparisonm1 = "Ljava/security/MessageDigest.getInstance"
 HashValueComparisonm2 = "Ljava/security/MessageDigest.digest"
 
@@ -1191,11 +947,7 @@ HashValueComparisonm4 = "Ljava/lang/Class.getDeclaredMethod"
 HashValueComparisonA = [HashValueComparisonm1, HashValueComparisonm2]
 HashValueComparisonB = [HashValueComparisonm3, HashValueComparisonm4]
 
-'''
-AntiDebuggingHashValueComparisonDiscriminant  
-A m1 and m2 MessageDigest
-B m3-4  Class or Methods
-'''
+
 
 #UsingTimingCheck
 AntiDebuggingUsingTimingChecks1 = "getrusage"
@@ -1210,14 +962,7 @@ AntiDebuggingUsingTimingCheckm3 = "Landroid/os/SystemClock.elapsedRealtime"
 
 UsingTimingCheckA = [eval("AntiDebuggingUsingTimingChecks"+str(i)) for i in range(1,6)]
 UsingTimingCheckB = [AntiDebuggingUsingTimingCheckm1, AntiDebuggingUsingTimingCheckm2, AntiDebuggingUsingTimingCheckm3]
-'''
-AntiDebuggingUsingTimingCheckDiscriminant   仅从使用“时间函数”无法做出判断，必须结合上下文  待改进
 
-A 获取时间相关的native层函数
-B 获取时间相关的Java层函数
-A or B
-
-'''
 
 AntiDebuggingUsingSignalsSymbolsnativesy1 = "signal"
 AntiDebuggingUsingSignalsSymbolsnativesy2 = "sigaction"
@@ -1227,25 +972,14 @@ AntiDebuggingUsingSignalsSymbolsnativesy4 = "raise"
 
 UsingSignalsA = [eval("AntiDebuggingUsingSignalsSymbolsnativesy"+str(i)) for i in range(1,3)]    
 UsingSignalsB = [eval("AntiDebuggingUsingSignalsSymbolsnativesy"+str(i)) for i in range(3,5)]
-'''
-AntiDebuggingUsingSignalsDiscriminant  待改进（只有发送的是SIGINT 2 , SIGTERM 15 ,SIGTRAP 5 信号才行）
-A i1-2 Register signal related symbols
-B i3-4 Send signals related symbols
-A∧B
-'''
+
 AntiDebuggingPreemptPtraceAPIMethodsm1 = "Landroid/os/Process.myPid"
 AntiDebuggingPreemptPtraceAPISymbolsnativesy1 = "getpid"
 AntiDebuggingPreemptPtraceAPISymbolsnativesy2 = "Ptrace"
 
 PreemptPtraceAPIA = [AntiDebuggingPreemptPtraceAPIMethodsm1, AntiDebuggingPreemptPtraceAPISymbolsnativesy1]
 PreemptPtraceAPIB = [AntiDebuggingPreemptPtraceAPISymbolsnativesy2]
-'''
-AntiDebuggingPreemptPtraceAPIDiscriminant
-A m1∨i1 Obtain the pid of the current process
-B i2 Preempt Ptrace
 
-A∧B
-'''
 
 
 #BreakpointInstructionDetection
@@ -1253,9 +987,7 @@ A∧B
 #BreakpointInstructionDetectionHexcode2 = "10 DE"
 BreakpointInstructionDetectionHexcode1 = b'\xf0\x01\xf0\xe7'
 BreakpointInstructionDetectionHexcode2 = b'\x10\xde'
-'''
-1 and 2
-'''
+
 
 #AntiDump
 AntiDumps1 = "inotify_init"
@@ -1294,16 +1026,7 @@ AntiDumpB = [AntiDumps7, AntiDumps9]
 AntiDumpC = [AntiDumps4, AntiDumps5]
 AntiDumpD = [AntiDumps8, AntiDumps10]
 AntiDumpE = [AntiDumps11,AntiDumps12,AntiDumps13]
-'''
-AntiDebuggingAntiDumpDiscriminant
-A s1 and s2 inotify声明
-B s3 s7 s9 完整maps/pagemap/mem   监视其中一个即可
-C s4 and s5 /proc/ and getpid
-D s6 s8 s10 maps/pagemap/mem  监视其中一个即可
 
-A∧(B∨(C∧D))
-
-'''
 
 
 AntiDebuggingNumberofBreakpointsSymbolsnativesy1 = "BreakpointSet"
@@ -1315,11 +1038,7 @@ AntiDebuggingNumberofBreakpointsSymbolsnativesy5 = "size"
 NumberofBreakpointsA = [AntiDebuggingNumberofBreakpointsSymbolsnativesy1,AntiDebuggingNumberofBreakpointsSymbolsnativesy4]
 NumberofBreakpointsB = [AntiDebuggingNumberofBreakpointsSymbolsnativesy2,AntiDebuggingNumberofBreakpointsSymbolsnativesy3,AntiDebuggingNumberofBreakpointsSymbolsnativesy5]
 
-'''
-AntiDebuggingNumberofBreakpointsDiscriminant
-A i1-2(同时) Checking Number of breakpoints
-A and B
-'''
+
 
 AntiDebuggingBreakpointsetStructureSymbolsnativesy1 = "BreakpointSet"
 AntiDebuggingBreakpointsetStructureSymbolsnativesy2 = "breakpoints"
@@ -1327,25 +1046,17 @@ AntiDebuggingBreakpointsetStructureSymbolsnativesy3 = "GetBreakpointSet"
 AntiDebuggingBreakpointsetStructureSymbolsnativesy4 = "fBreakpointLines"
 BreakpointsetStructureA = [AntiDebuggingBreakpointsetStructureSymbolsnativesy1, AntiDebuggingBreakpointsetStructureSymbolsnativesy2]
 BreakpointsetStructureB = [AntiDebuggingBreakpointsetStructureSymbolsnativesy3,AntiDebuggingBreakpointsetStructureSymbolsnativesy4]
-'''
-AntiDebuggingBreakpointsetStructureDiscriminant
-A i1-2 (同时) NULL is assigned to the breakpoint
-A or B
-'''
+
 
 AntiDebuggingModifyJdwpStateJdwpTransportSymbolsnativesy1 = "JdwpState"
 AntiDebuggingModifyJdwpStateJdwpTransportSymbolsnativesy2 = "JdwpTransport"
 ModifyJdwpStateJdwpTransportA = [AntiDebuggingModifyJdwpStateJdwpTransportSymbolsnativesy1, AntiDebuggingModifyJdwpStateJdwpTransportSymbolsnativesy1]
 
-'''
-AntiDebuggingModifyJdwpState/JdwpTransportDiscriminant  去掉这一项
-A i1-2 Modify JdwpState/JdwpTransport
-A
-'''
+
 
 #Anti-Tampering part
 #Anti-Tampering Signature Checking
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 AntiTamperingSignatureCheckingClassesc1 = "Ljava/security/MessageDigest;"
 AntiTamperingSignatureCheckingClassesc2 = "Landroid/content/pm/PackageInfo;"
 AntiTamperingSignatureCheckingClassesc3 = "Landroid/content/pm/Signature;"
@@ -1411,26 +1122,15 @@ AntiTamperingSignatureCheckingStringsNatives28 = "contentInfo"
 AntiTamperingSignatureCheckingStringsNatives29 = "crls-[optional]"
 AntiTamperingSignatureCheckingStringsNatives30 = "signerInfos"
 AntiTamperingSignatureCheckingStringsNatives31 = "signerInfo"
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 SignatureCheckingA = [eval("AntiTamperingSignatureCheckingStringsJavas"+str(i)) for i in range(1,9)] 
 SignatureCheckingB = [AntiTamperingSignatureCheckingMethodsm1, AntiTamperingSignatureCheckingMethodsm2, AntiTamperingSignatureCheckingMethodsm3]
 SignatureCheckingC = [AntiTamperingSignatureCheckingStringsJavas8, AntiTamperingSignatureCheckingStringsJavas9]
 SignatureCheckingD = [AntiTamperingSignatureCheckingAttributea1, AntiTamperingSignatureCheckingAttributea2, AntiTamperingSignatureCheckingAttributea3]
 SignatureCheckingE = [eval("AntiTamperingSignatureCheckingStringsNatives"+str(i)) for i in range(1,7)] 
-'''
-AntiTamperingSignatureCheckingDiscriminant
 
-A javas1-8 At least one of strings for digest algorithm
-B m1-3 All of methods for digest
-C m8-9 At least one of methods for signatures
-D a1-3 At least one of attribute for signatures
-E natives1-6 All of the string for getting the certificate
-F 是否存在证书
-(A∧B∧(C∨D))∨E∨F
-
-'''
 #Anti-Tampering Code Integrity Checking
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 AntiTamperingCodeIntegrityCheckingClassess1 = "Ljava/util/zip/ZipFile;"
 AntiTamperingCodeIntegrityCheckingClassess2 = "Ljava/util/zip/ZipEntry;"
 AntiTamperingCodeIntegrityCheckingClassess3 = "Ljava/util/jar/JarFile;"
@@ -1462,7 +1162,7 @@ AntiTamperingCodeIntegrityCheckingStringsJavas3 = "classes3.dex"
 AntiTamperingCodeIntegrityCheckingStringsJavas4 = "classes4.dex"
 AntiTamperingCodeIntegrityCheckingStringsJavas5 = "classes5.dex"
 AntiTamperingCodeIntegrityCheckingStringsJavas6 = "MultiDexExtractor.load("
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 AntiTamperingCodeIntegrityCheckingMehtodsm14 = "Ljava/security/MessageDigest.getInstance"
 AntiTamperingCodeIntegrityCheckingMehtodsm15 = "Ljava/security/MessageDigest.update"
 AntiTamperingCodeIntegrityCheckingMehtodsm16 = "Ljava/security/MessageDigest.digest"
@@ -1473,22 +1173,10 @@ CodeIntegrityCheckingC = [AntiTamperingCodeIntegrityCheckingAttributesa1]
 CodeIntegrityCheckingD = [AntiTamperingCodeIntegrityCheckingMehtodsm2, AntiTamperingCodeIntegrityCheckingMehtodsm3]
 CodeIntegrityCheckingE = [AntiTamperingCodeIntegrityCheckingMehtodsm4, AntiTamperingCodeIntegrityCheckingMehtodsm5, AntiTamperingCodeIntegrityCheckingMehtodsm6 ,AntiTamperingCodeIntegrityCheckingMehtodsm7]
 CodeIntegrityCheckingF = [AntiTamperingCodeIntegrityCheckingMehtodsm14,AntiTamperingCodeIntegrityCheckingMehtodsm15,AntiTamperingCodeIntegrityCheckingMehtodsm16]
-'''
-AntiTamperingCodeIntegrityCheckingDiscriminant
 
-A javas1-5 classes.dex strings
-B m1 Method for getting the package code path
-C a1 Attribute to get the package code path
-D m2-3 At least one of the methods for the CRC
-E m4-7 At least one of the methods for the CRC
-F m14 and m15 and m16
-A∧(B∨C)∧(D∨E∨F)
-
-
-'''
 
 #Anti-Tampering Installer Verification
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 AntiTamperingInstallerVerificationClassesc1 = "Landroid/content/pm/PackageInfo;"
 AntiTamperingInstallerVerificationClassesc2 = "Landroid/content/pm/PackageManager;"
 AntiTamperingInstallerVerificationClassesc3 = "Landroid/content/Context;"
@@ -1511,7 +1199,7 @@ AntiTamperingInstallerVerificationStringsJavas5 = "org.fdroid.fdroid"
 AntiTamperingInstallerVerificationStringsJavas6 = "com.uptodown"
 AntiTamperingInstallerVerificationStringsJavas7 = "com.uptodown.lite"
 AntiTamperingInstallerVerificationStringsJavas8 = "com.slideme.sam.manager"
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 
 AntiTamperingInstallerVerificationMethodsm5 = "lcom/google/android/play/core/splitcompat/SplitCompat.install"
 AntiTamperingInstallerVerificationMethodsm6 = "Landroid/content/pm/PackageManager.verifyPackage"
@@ -1520,18 +1208,10 @@ InstallerVerificationA = [eval("AntiTamperingInstallerVerificationStringsJavas"+
 InstallerVerificationB = [AntiTamperingInstallerVerificationMethodsm1]
 InstallerVerificationD = [AntiTamperingInstallerVerificationMethodsm6]
 
-'''
-AntiTamperingInstallerVerificationDiscriminant
 
-A s1-8 At least one of the stores names
-B m1 method getInstallerPackageName
-C manifest
-D SplitCompat.install
-A∧B or C or D
-'''
 
 #Anti-Tampering SafetyNet Attestation
-#↓-------------OLD——————————————————————————————————————————————————————————————
+
 AntiTamperingSafetyNetAttestationClassesc1 = "Lcom/google/android/gms/safetynet/SafetyNet;"
 AntiTamperingSafetyNetAttestationClassesc2 = "Lcom/google/android/gms/safetynet/SafetyNetClient;"
 AntiTamperingSafetyNetAttestationClassesc3 = "Lcom/google/android/gms/safetynet/SafetyNetApi;"
@@ -1548,7 +1228,7 @@ AntiTamperingSafetyNetAttestationStringsJavas4 = "apkCertificateDigestSha256"
 AntiTamperingSafetyNetAttestationStringsJavas5 = "apkPackageName"
 AntiTamperingSafetyNetAttestationStringsJavas6 = "timestampMs"
 AntiTamperingSafetyNetAttestationStringsJavas7 = "nonce"
-#↑-------------OLD——————————————————————————————————————————————————————————————
+
 
 AntiTamperingSafetyNetAttestationMethodsm4 = "Lcom/google/android/gms/safetynet/SafetyNetClient/AttestationRequest.Builder"
 AntiTamperingSafetyNetAttestationMethodsm5 = "Lcom/google/android/gms/safetynet/SafetyNetApi/AttestationRequest/AttestationRequest.Builder"
@@ -1572,15 +1252,7 @@ SafetyNetAttestationB = [AntiTamperingSafetyNetAttestationClassesc1, AntiTamperi
 SafetyNetAttestationC = [AntiTamperingSafetyNetAttestationMethodsm6,AntiTamperingSafetyNetAttestationMethodsm7]
 SafetyNetAttestationD = [AntiTamperingSafetyNetAttestationMethodsm8]
 SafetyNetAttestationE = [AntiTamperingSafetyNetAttestations1,AntiTamperingSafetyNetAttestations2,AntiTamperingSafetyNetAttestations3]
-'''
-AntiTamperingSafetyNetAttestationDiscriminant
 
-A m1-5 At least one of the methods
-B c1-4 At least one of the classes
-C c中一个
-D 
-(A∧B)∨(C∧(D∨E))
-'''
 
 #Root Detection part
 #Root Detection Check Installed Packages
@@ -1635,16 +1307,7 @@ CheckInstalledPackagesA = [eval("RootDetectionCheckInstalledPackagesStringsJavaA
 CheckInstalledPackagesB = [eval("RootDetectionCheckInstalledPackagesStringsJavaAndNatives"+str(i)) for i in range(10,21)] 
 CheckInstalledPackagesC = [eval("RootDetectionCheckInstalledPackagesStringsJavaAndNatives"+str(i)) for i in range(21,33)] 
 CheckInstalledPackagesB = CheckInstalledPackagesB + CheckInstalledPackagesexa
-'''
-RootDetectionCheckInstalledPackagesDiscriminant
 
-A s1-s9 Directories related strings
-B s10-20 Package related strings
-C s21-32 Keywords for rooting check related strings
-
-B∨C
-
-'''
 
 #Root Detection Check Processes/Services
 RootDetectionCheckProcessesServicesClassesc1 = "Landroid/app/ActivityManager;"
@@ -1689,14 +1352,7 @@ CheckProcessesServicesC = [eval("RootDetectionCheckProcessesServicesStringsJavas
 CheckProcessesServicesD = [eval("RootDetectionCheckProcessesServicesStringsNatives"+str(i)) for i in range(1,13)] 
 
 
-'''
-RootDetectionCheckProcesses/ServicesDiscriminant
-A c1-4 Acquire Processes/Services related Classes
-B m2-3Acquire Processes/Services related Methods and not m1
-C Javas1-12 Processes/Services related Strings
-D Natives1-12 Processes/Services related Strings
-(A∧B∧C)
-'''
+
 
 #Root Detection Check Shell Commands Execution
 RootDetectionCheckShellCommandsExecutionStringsJavaAndNatives33 = "pm list packages"
@@ -1761,15 +1417,7 @@ CheckShellCommandsExecutionC = [eval("RootDetectionCheckShellCommandsExecutionSt
 CheckShellCommandsExecutionD = [RootDetectionCheckShellCommandsExecutionStringsJavaAndNatives39]
 CheckShellCommandsExecutionC = CheckShellCommandsExecutionC
 CheckShellCommandsExecutionE = checkSuexa
-'''
-RootDetectionCheckShellCommandsExecutionDiscriminant
 
-A s33-36 Shell Command related Strings
-B s10-32 content of execution related Strings
-C s37-44 su可能的位置
-A∧(B∨C) -》 C
-checkSu
-'''
 
 #Root Detection Check Build Tag and System Properties
 RootDetectionCheckBuildTagandSystemPropertiesa1 = "Landroid/os/Build.TAGS"
@@ -1805,18 +1453,7 @@ CheckBuildTagandSystemPropertiesE = [RootDetectionCheckBuildTagandSystemProperti
 CheckBuildTagandSystemPropertiesF = [RootDetectionCheckBuildTagandSystemPropertiesStringsJavaAndNatives9,RootDetectionCheckBuildTagandSystemPropertiesStringsJavaAndNatives12]
 CheckBuildTagandSystemPropertiesG = [RootDetectionCheckBuildTagandSystemPropertiesStringsJavaAndNatives10,RootDetectionCheckBuildTagandSystemPropertiesStringsJavaAndNatives11]
 CheckBuildTagandSystemPropertiesH = [RootDetectionCheckBuildTagandSystemPropertiesStringsJavaAndNatives13, RootDetectionCheckBuildTagandSystemPropertiesStringsJavaAndNatives9]
-'''
-RootDetectionCheckBuildTagandSystemPropertiesDiscriminant
-A s1 and a1 
-B s3 and s4
-C s5 or s6
-D s7 and s8
-E m1
-F s9 s12
-G m10 and m11
-H s9 and s13
-A or B or C or D or((E or F) and G ) or H
-'''
+
 #Root Detection Directory Permissions
 RootDetectionDirectoryPermissionsStringsJavaAndNatives1 = "/system/bin"   #Likely contain su binary
 RootDetectionDirectoryPermissionsStringsJavaAndNatives2 = "/system/xbin"
@@ -1842,105 +1479,3 @@ RootDetectionDirectoryPermissionsStringsJavaAndNatives19 = "mount"
 
 DirectoryPermissionsA = [eval("RootDetectionDirectoryPermissionsStringsJavaAndNatives"+str(i)) for i in range(1,14)] 
 DirectoryPermissionsB = [eval("RootDetectionDirectoryPermissionsStringsJavaAndNatives"+str(i)) for i in range(14,20)]
-'''
-RootDetectionDirectoryPermissionsDiscriminant
-A s1-9 Directory related Strings
-B s10 Query permission related String
-
-A∧B
-'''
-
-#Anti-Tainting part
-
-#AntiTaintingControlDependence
-#AntiTaintingControlDependenceSimpleEncodingAttack
-
-'''
-AntiTaintingControlDependenceSimpleEncodingAttackDiscriminant
-for each symbol in Asciitable:
-    if symbol == X:
-        Y = X
-'''
-
-#AntiTaintingControlDependenceSimpleCount-to-XAttack
-'''
-AntiTaintingControlDependenceSimpleCount-to-XAttackDiscriminant
-while i<x
-    i++
-y=i
-    
-'''
-
-#AntiTaintingControlDependenceSimpleDeliberateExceptionAttack
-'''
-AntiTaintingControlDependenceSimpleDeliberateExceptionAttackDiscriminant
-触发x次异常
-在异常中每次y++
-'''
-
-#AntiTaintingSubversionofBenignCode
-#AntiTaintingSubversionofBenignCodeSystemCommandAttack
-'''
-AntiTaintingSubversionofBenignCodeSystemCommandAttackDiscriminant
-
-echo/printf 等命令 打印出x的值，在赋给y
-'''
-
-#AntiTaintingSubversionofBenignCodeSystem–FileHybridAttack
-'''
-AntiTaintingSubversionofBenignCodeSystem–FileHybridAttackDiscriminant
-写入文件然后再读出
-echo 写入
-read/cat/xxd/hd/od/hexdump/dd
-'''
-
-
-#AntiTaintingSideChannels
-#AntiTaintingSideChannelsTimingAttack
-'''
-AntiTaintingSideChannelsTimingAttackDiscriminant
-T1 = date
-sleep x秒
-T2 = date
-
-y = T2 - T1
-'''
-
-#AntiTaintingSideChannelsFileLengthAttack
-'''
-AntiTaintingSideChannelsFileLengthDiscriminant
-F = CreateNewFileHandle()
-z = 0
-while z < x :
-    WriteOneByte(F)
-    z = z++
-
-Y = ReadFileLength(F)
-'''
-
-#AntiTaintingSideChannelsBitmapCacheAttack
-'''
-AntiTaintingSideChannelsBitmapCacheAttackDiscriminant
-B = CreateNewBitmap()
-SetPixel([10,10],X -> B)
-Y = GetPixel(B,[10,10])
-'''
-
-#AntiTaintingSideChannelsTextScalingAttack
-'''
-AntiTaintingSideChannelsTextScalingAttackDiscriminant
-T = TextViewWidget()
-T = SetTextScalingValue(X)
-Y = GetTextScalingValue(T)
-'''
-
-#AntiTaintingSideChannelsDirectBufferAttack
-'''
-AntiTaintingSideChannelsDirectBufferAttackDiscriminant
-D = NewDirectAccessBuffer()
-DirectMemoryWrite(X,0xXX -> D)
-Y = DirectMemoryRead(D,0xXX)
-'''
-
-
-
