@@ -1,0 +1,7 @@
+{
+    "Anti-Debugging": 0,
+    "Anti Virtual Environment": 1,
+    "Anti-Tampering": 0,
+    "Anti-Hooking": 1,
+    "Root Detection": 1
+}
