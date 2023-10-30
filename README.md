@@ -9,3 +9,10 @@ ARAP is an Android anti-analysis technology detector based on Androguard
 3. Run ARAP.py
    
 4. The analysis results are stored in the newly generated output_xxx directory
+
+
+#AOSP
+AOSP available from https://drive.google.com/drive/folders/12ewC9p7cd_23I8Qgd-s8KyRsociIhMFJ?usp=drive_link
+
+#APK analysis reports
+APK analysis reports is in the branch master
