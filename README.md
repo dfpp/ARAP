@@ -8,7 +8,7 @@ ARAP is an Android anti-analysis technology detector based on Androguard
    
 3. Run ARAP.py
    
-4. The analysis results are stored in the newly generated output_xxx directory
+4. The analysis results are stored in the newly generated output_xxx directory.
 
 
 # AOSP
