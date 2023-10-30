@@ -140,3 +140,41 @@ The Check Build Tag and System Properties is a Root detection method that determ
 Directory Permissions is a root detection method that determines if a device has been rooted by checking the permissions of certain directories in the Android file system. After a device is rooted, the permissions of certain directories may be changed to allow normal users to read, write, and execute operations on them.
 
 
+## Term List
+|       **Comprehensive Expression**       	| **Abbreviation** 	|
+|:----------------------------------------:	|:----------------:	|
+|               Anti-Debuggin              	|        AD        	|
+|            Using Timing Check            	|        UTC       	|
+|               Using Signals              	|        US        	|
+|              Using TracerPID             	|        UTP       	|
+|            Preempt Ptrace API            	|        PPA       	|
+|               Anti-Dumping               	|        ADU       	|
+|     Debuggable and Debugger Features     	|        DDF       	|
+|       Using Breakpointset Structure      	|        UBS       	|
+|         Altering Debugger Memory         	|        ADM       	|
+|       Virtual Environment Detection      	|        VED       	|
+|            Emulator Detection            	|        ED        	|
+|             Device Identifier            	|        DI        	|
+|               Current Build              	|        CB        	|
+|             Telephony Manager            	|        TM        	|
+|           Hardware Composition           	|        HC        	|
+|         Emulator Related Strings         	|        ERS       	|
+|            Sensor Information            	|        SI        	|
+|      Context Switch Based Detection      	|       CSBD       	|
+|  Translation Block Cache Based Detection 	|       TBCBD      	|
+| Misaligned Vectorization Based Detection 	|       MVBD       	|
+|    App-Level Virtualization Detection    	|       ALVD       	|
+|                 File Path                	|        FP        	|
+|                 Share UID                	|        SU        	|
+|              Port Detection              	|        PD        	|
+|        Code Injection and Hooking        	|        CIH       	|
+|              Anti-Tampering              	|        AT        	|
+|            Signature Checking            	|        SC        	|
+|          Code Integrity Checking         	|        CIC       	|
+|           SafetyNet Attestation          	|        SA        	|
+|          Installer Verification          	|        IV        	|
+|              Root Detection              	|        RD        	|
+|         Check Installed Packages         	|        CIP       	|
+|      Check Shell Commands Execution      	|       CSCE       	|
+|   Check Build Tag and System Properties  	|       CBTSP      	|
+|           Directory Permissions          	|        DP        	|
