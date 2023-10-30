@@ -12,7 +12,7 @@ ARAP is an Android anti-analysis technology detector based on Androguard
 
 
 # AOSP
-AOSP available from https://drive.google.com/drive/folders/12ewC9p7cd_23I8Qgd-s8KyRsociIhMFJ?usp=drive_link
+ARAP matching custom AOSP is available at https://drive.google.com/drive/folders/12ewC9p7cd_23I8Qgd-s8KyRsociIhMFJ?usp=drive_link.
 
 # APK analysis reports
 APK analysis reports are in the master branch.
