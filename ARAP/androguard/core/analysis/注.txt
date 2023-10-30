@@ -1,0 +1,3 @@
+cli 版可以运行自己写的analyze
+
+原版可以运行 anto  √
