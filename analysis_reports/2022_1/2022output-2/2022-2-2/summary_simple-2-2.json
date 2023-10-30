@@ -1,0 +1,7 @@
+{
+    "Anti-Debugging": 150,
+    "Anti Virtual Environment": 224,
+    "Anti-Tampering": 270,
+    "Anti-Hooking": 39,
+    "Root Detection": 185
+}
