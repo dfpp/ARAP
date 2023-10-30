@@ -1,0 +1,237 @@
+{
+    "Anti-Debugging": {
+        "DebugSub": 0,
+        "Native Code Debugger": {
+            "Using Timing Check": 0,
+            "Using Signals": 9,
+            "Using TracerPID": 25,
+            "Preempt Ptrace API": 0,
+            "Anti Dump": 0
+        },
+        "JDWP Debugger": {
+            "Debugger Related Value": 264,
+            "Debugger Related Value OLD": 182,
+            "Breakpointset Structure": 5,
+            "Altering Debugger Memory": 7
+        }
+    },
+    "Anti Virtual Environment": {
+        "EnvironmentSub": 0,
+        "Anti-Emulator": {
+            "Sum": 391,
+            "Static": {
+                "Device Identifier": 303,
+                "Device Identifier OLD": 7,
+                "Current Build": 366,
+                "Current Build OLD": 289,
+                "Telephony Manager": 0,
+                "Hardware Components": 28,
+                "Emulator Related Strings and System Properties": 183,
+                "Emulator Related Strings and System Properties OLD": 181
+            },
+            "Dynamic": {
+                "Sensor Information": 45,
+                "CPU Performance": {
+                    "Context Switch Based Detection": 0,
+                    "Translation Block Cache Based Detection": 0,
+                    "Misaligned Vectorization Based Detection": 13,
+                    "Updates to Execution State Bits": 1
+                }
+            }
+        },
+        "Anti App-Level Virtualization": {
+            "Sum": 5,
+            "File Path": 3,
+            "Share UID": 3,
+            "Port Detection": 0,
+            "Code Injection And Hooking": 2
+        }
+    },
+    "Anti-Tampering": {
+        "TamperSub": 0,
+        "SafetyNet Attestation": 31,
+        "SafetyNet Attestation OLD": 29,
+        "Installer Verification": 317,
+        "Installer Verification OLD": 262,
+        "Code Integrity Checking": 240,
+        "Code Integrity Checking OLD": 229,
+        "Signature Checking": 408,
+        "Signature Checking OLD": 329
+    },
+    "Anti-Hooking": {
+        "HookSub": 0,
+        "Xposed": 64,
+        "Xposed OLD": 64,
+        "Frida": 7,
+        "Frida OLD": 6
+    },
+    "Root Detection": {
+        "RootSub": 0,
+        "Check Installed Packages": 204,
+        "Check Shell Commands Execution": 204,
+        "Check Build Tag and System Properties": 180,
+        "Directory Permissions": 27
+    },
+    "Sum": {
+        "Sub": 0,
+        "Major": 0,
+        "Sub_0": 3,
+        "Sub_1": 10,
+        "Sub_2": 22,
+        "Sub_3": 33,
+        "Sub_4": 56,
+        "Sub_5": 47,
+        "Sub_6": 27,
+        "Sub_7": 32,
+        "Sub_8": 25,
+        "Sub_9": 33,
+        "Sub_10": 57,
+        "Sub_11": 28,
+        "Sub_12": 26,
+        "Sub_13": 12,
+        "Sub_14": 1,
+        "Sub_15": 1,
+        "Sub_16": 0,
+        "Sub_17": 4,
+        "Sub_18": 0,
+        "Sub_19": 0,
+        "Sub_20": 0,
+        "Sub_21": 0,
+        "Sub_22": 0,
+        "Sub_23": 0,
+        "Sub_24": 0,
+        "Sub_25": 0,
+        "Sub_26": 0,
+        "Sub_27": 0,
+        "Sub_28": 0,
+        "Sub_29": 0,
+        "Sub_30": 0,
+        "Sub_31": 0,
+        "Sub_32": 0,
+        "Sub_33": 0,
+        "Sub_34": 0,
+        "Major_0": 3,
+        "Major_1": 15,
+        "Major_2": 95,
+        "Major_3": 95,
+        "Major_4": 145,
+        "Major_5": 64
+    },
+    "Test": {
+        "Using Timing Check": {
+            "B1": 0,
+            "B2": 0,
+            "B3": 0
+        },
+        "shareUID": {
+            "A": 11,
+            "B": 3,
+            "C": 100,
+            "D": 361,
+            "E": 363,
+            "F": 390
+        },
+        "HardwareComponents": {
+            "A": 26,
+            "B": 0,
+            "C": 0,
+            "D": 0,
+            "E": 0,
+            "F": 0,
+            "G": 0,
+            "H": 1,
+            "I": 0,
+            "J": 0,
+            "K": 31,
+            "L": 45,
+            "KL": 11
+        },
+        "EmulatorRelated": {
+            "A": 268,
+            "B": 142,
+            "C": 333,
+            "D": 42,
+            "E": 78,
+            "F": 142,
+            "G": 330,
+            "H": 42,
+            "ABC": 111,
+            "DE": 109,
+            "FGH": 134
+        },
+        "Presence": {
+            "A": 0,
+            "B": 0,
+            "C": 0,
+            "D": 0,
+            "E": 0,
+            "F": 0,
+            "AB": 0,
+            "DE": 0,
+            "EFC": 0
+        },
+        "Debugger": {
+            "A": 54,
+            "B": 268,
+            "C": 2,
+            "D": 54,
+            "E": 151,
+            "F": 0,
+            "G": 0,
+            "H": 5,
+            "I": 5,
+            "J": 40,
+            "K": 12,
+            "L": 1,
+            "M": 5,
+            "N": 3,
+            "O": 0,
+            "P": 0,
+            "Q": 0,
+            "R": 1,
+            "S": 1,
+            "AB": 51,
+            "NO": 0,
+            "PQ": 0,
+            "RS": 1
+        },
+        "DUMP": {
+            "A": 0,
+            "B": 7,
+            "C": 257,
+            "D": 0
+        },
+        "HashValueComparison": {
+            "A": 0,
+            "B": 0
+        },
+        "AlteringDebuggerMemory": {
+            "A": 0,
+            "B": 7
+        },
+        "ContextSwitchBasedDetection": {
+            "A": 311,
+            "B": 310,
+            "C": 271
+        },
+        "CheckShellCommandsExecution": {
+            "A": 0,
+            "B": 0,
+            "C": 168
+        },
+        "CheckBuildTagandSystemProperties": {
+            "A": 176,
+            "B": 0,
+            "C": 0,
+            "D": 0,
+            "E": 15,
+            "F": 268,
+            "G": 39,
+            "EFG": 36
+        },
+        "DirectoryPermissions": {
+            "A": 27,
+            "B": 411
+        }
+    }
+}
