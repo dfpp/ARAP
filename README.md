@@ -14,7 +14,6 @@ ARAP is an Android anti-analysis technology detector based on Androguard
 APK analysis reports are in the master branch.
 
 # What are Anti Runtime Analysis techniques?
-  
 Android Anti Runtime Analysis techniques (ARA techniques) refer to a set of technical methods or approaches employed in Android applications to protect them from dynamic runtime analysis attacks. It is worth noting that obfuscation, as a common anti-static analysis technique, is not within the scope of our research in this paper.
 
 # AOSP
