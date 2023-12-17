@@ -10,12 +10,11 @@ ARAP is an Android anti-analysis technology detector based on Androguard
    
 4. The analysis results are stored in the newly generated output_xxx directory.
 
+# APK analysis reports
+APK analysis reports are in the master branch.
 
 # AOSP
 ARAP matching custom AOSP is available at https://drive.google.com/drive/folders/12ewC9p7cd_23I8Qgd-s8KyRsociIhMFJ?usp=drive_link.
-
-# APK analysis reports
-APK analysis reports are in the master branch.
 
 # ARA techniques 
 The emergence of these ARA is driven by the different motivations of benign application developers and malicious application developers.  Benign application developers may use ARA techniques to protect intellectual property, prevent reverse engineering, and deter malicious behavior.  Conversely, malicious application developers employ ARA techniques to conceal malicious activities, evade detection and prevention, and enhance the persistence of their applications.  These motivations have propelled the development and application of ARA technologies.
