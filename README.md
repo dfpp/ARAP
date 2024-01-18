@@ -112,7 +112,7 @@ Code Integrity Checking refers to the process of verifying the integrity of an a
 
 ### SafetyNet Attestation (SA)
 SafetyNet Attestation is a security validation service for Android applications introduced by Google, aimed at helping developers protect their applications from malicious attacks and tampering. It can check the integrity and authenticity of applications, ensuring they have not been tampered with or maliciously modified. Developers can add a dependency on SafetyNet Attestation and use the SafetyNet API in their applications.
-It is worth noting that Google will gradually discontinue the use of the SafetyNet Attestation API starting in 2024 and encourage the use of the Play Integrity API, which is a more secure solution. We will also consider the Play Integrity API in our work.
+It is worth noting that Google will gradually discontinue the use of the SafetyNet Attestation API starting in 2024 and encourage the use of the Play Integrity API, which is a more secure solution. We also consider the Play Integrity API in our work.
 
 ### Installer Verification (IV)
 The purpose of Installer Verification is to ensure that the installation program is from a trusted source. For example, if a developer only uploads an application to the Google Play Store, but the installation source is from another app market, it may indicate a risk of repackaging the application. Developers can enable Installer Verification by adding "android:verification="true"" to the application manifest file (AndroidManifest.xml).
