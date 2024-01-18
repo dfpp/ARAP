@@ -56,7 +56,7 @@ The main purpose of this technique is to detect whether a device is running in a
 Emulator Detection refers to a type of technology that is used to detect and defend against applications running in an emulator or virtual machine environment, to prevent malicious attacks, anti-debugging, cracking, or other fraudulent behavior. Emulator Detection technology typically detects features of the emulator or virtual machine and takes corresponding actions when these features are detected, such as shutting down the application or displaying warning messages.
 
 #### Device Identifier (DI)
-In the Android system, each device has a unique device identifier called Android ID. However, in emulators or virtual machines, the same Android ID is often used, so it is possible to detect whether the current device is an emulator by checking if the Android ID matches the real device's Android ID. 
+In the Android system, each device has a unique device identifier called Android ID. However, in emulators or virtual machines, the same Android ID is often used, so it is possible to detect whether the current device is an emulator by checking if the current Android ID matches the commonly used Android ID in emulators.
 
 #### Current Build (CB)
 Detecting the current build is one of the common anti-emulator techniques. The current build refers to the current operating system version and its related parameters, such as kernel version, firmware version, compilation time, etc. In emulators or virtual machines, specific build parameters are often used, so detecting whether the current build matches the current build of a real device can determine whether the current device is an emulator.
