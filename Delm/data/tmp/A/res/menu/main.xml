@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/ic_action_speechoff" android:id="@id/action_speech" android:title="@string/action_speech" android:showAsAction="always" />
+    <item android:icon="@drawable/ic_action_share" android:id="@id/action_share" android:title="@string/action_share" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/ic_action_voice" android:id="@id/action_voice" android:title="@string/action_voice" android:showAsAction="ifRoom" />
+</menu>

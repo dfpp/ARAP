@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="29" android:compileSdkVersionCodename="10" android:installLocation="auto" package="com.gkapps.translate.sden" platformBuildVersionCode="29" platformBuildVersionName="10">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
+    <application android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:icon="@drawable/ic_launcher_sindhi_icon" android:isSplitRequired="true" android:label="@string/app_name" android:networkSecurityConfig="@xml/network_security_config">
+        <activity android:configChanges="orientation|screenSize" android:label="@string/app_name" android:name="com.gkapps.translate.sden.StartTranslator" android:theme="@android:style/Theme.Holo.Light" android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:name="com.appbrain.AppBrainActivity"/>
+        <provider android:authorities="com.gkapps.translate.sden.AppBrainInitProvider" android:exported="false" android:name="com.appbrain.AppBrainInitProvider"/>
+        <service android:name="com.appbrain.AppBrainService"/>
+        <service android:enabled="@bool/appbrain_job_service_enabled" android:name="com.appbrain.AppBrainJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <meta-data android:name="com.android.vending.splits.required" android:value="true"/>
+        <meta-data android:name="com.android.stamp.source" android:value="https://play.google.com/store"/>
+        <meta-data android:name="com.android.stamp.type" android:value="STAMP_TYPE_DISTRIBUTION_APK"/>
+        <meta-data android:name="com.android.vending.splits" android:resource="@xml/splits0"/>
+        <meta-data android:name="com.android.vending.derived.apk.id" android:value="8"/>
+    </application>
+</manifest>

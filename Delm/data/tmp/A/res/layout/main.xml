@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/backt" android:layout_width="fill_parent" android:layout_height="fill_parent" android:weightSum="1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ap="http://schemas.android.com/apk/res-auto" xmlns:ads="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:weightSum="1.0" android:layout_weight="0.17">
+        <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:weightSum="1.0">
+            <com.appbrain.AppBrainBanner android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:weightSum="1.0" android:layout_weight="0.99">
+                <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:weightSum="1.0" android:layout_weight="0.5">
+                    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="5.0px">
+                        <TextView android:textSize="20.0sp" android:textColor="#ff000000" android:layout_gravity="center_vertical" android:paddingLeft="5.0sp" android:paddingRight="5.0sp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Text to translate:" />
+                    </LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="5.0px">
+                        <EditText android:textSize="25.0sp" android:gravity="center|left|top" android:id="@id/input" android:background="@drawable/tedit" android:layout_width="fill_parent" android:layout_height="fill_parent" android:lines="5" android:scrollHorizontally="false" android:inputType="textMultiLine" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:weightSum="1.0" android:layout_weight="0.5">
+                    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="5.0px">
+                        <TextView android:textSize="20.0sp" android:textColor="#ff000000" android:layout_gravity="center_vertical" android:paddingLeft="5.0sp" android:paddingRight="5.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Result:" />
+                        <LinearLayout android:gravity="right" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="5.0px">
+                        <TextView android:textSize="25.0sp" android:textColor="#ff000000" android:gravity="center|left|top" android:id="@id/output" android:background="@drawable/tedit" android:layout_width="fill_parent" android:layout_height="fill_parent" android:lines="5" android:scrollHorizontally="false" android:inputType="textMultiLine" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:weightSum="1.0" android:layout_weight="0.83">
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="1.0">
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="5.0px" android:layout_marginTop="5.0sp" android:layout_marginRight="5.0px" android:layout_weight="0.5">
+                <Button android:textSize="25.0sp" android:textColor="#ffffffff" android:id="@id/english" android:background="@drawable/buttonc" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="To English" />
+            </LinearLayout>
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="5.0px" android:layout_marginTop="5.0sp" android:layout_marginRight="5.0px" android:layout_weight="0.5">
+                <Button android:textSize="25.0sp" android:textColor="#ffffffff" android:id="@id/sindhi" android:background="@drawable/buttonc" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="To Sindhi" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
