@@ -281,7 +281,7 @@ def process_apk(
     apk_path,
     tmp_dir="data/tmp",
     atg_output_dir="data/activity_atg",
-    deviceId="emulator-5554",
+    deviceId="",
     deeplinks_json="data/deeplinks_params.json",
     log="data/visited_rate/A.txt"
 ):
