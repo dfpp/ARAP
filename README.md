@@ -1,6 +1,6 @@
 # ARAP
 
-ARAP is an Android anti-analysis technology detector based on **Androguard**.
+ARAP is an Android anti-runtime analysis technology detector based on **Androguard**.
 
 ---
 
